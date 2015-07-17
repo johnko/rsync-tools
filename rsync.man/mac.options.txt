@@ -1,0 +1,304 @@
+                     ----nnoo--RR and all other options).
+                     ----nnoo--dd if you want to turn that off).
+                     ----rreeccuurrssiivvee (--rr), so specify it explicitly, if  you  want
+                     --aa works the same before or after ----ffiilleess--ffrroomm,  as  does
+                  -e 'ssh -o "ProxyCommand nohup ssh firewall nc -w1 %h %p"'
+                  -e 'ssh -p 2234'
+                 --filter='dir-merge /.rsync-filter'
+                 --filter='exclude .rsync-filter'
+              ----aappppeenndd.
+              ----cchhmmoodd==uuggoo==rrwwXX (which ensures  that  all  non-masked  bits  get
+              ----ccoonnffiigg option.  See also the "address" global  option  in  the
+              ----ccooppyy--uunnssaaffee--lliinnkkss), a symlink to a directory on another device
+              ----ccooppyy--uunnssaaffee--lliinnkkss, or  ----ccooppyy--ddiirrlliinnkkss  (both  of  which  also
+              ----ddeellaayy--uuppddaatteess  option, which will ensure that all copied files
+              ----ddeellaayy--uuppddaatteess.  Prior to rsync 2.6.4 ----iinnppllaaccee was also incom-
+              ----ddeelleettee--bbeeffoorree  algorithm.  A future version may change this to
+              ----ddeelleettee--eexxcclluuddeedd  is specified without one of the --delete-WHEN
+              ----ddeelleettee--eexxcclluuddeedd.    However,  if  none  of  the  --delete-WHEN
+              ----ddiirrss (--dd).
+              ----ffiilleess--ffrroomm option for more details).
+              ----ffiilleess--ffrroomm, and any merged files specified in a ----ffiilltteerr rule.
+              ----iiggnnoorree--eerrrroorrss option.
+              ----iinnppllaaccee  update to correct the mismatched data.  Only files on
+              ----iinnppllaaccee, but does  not  conflict  with  ----ssppaarrssee  (though  the
+              ----kkeeeepp--ddiirrlliinnkkss  option  (which  will  also  affect  symlinks to
+              ----lliinnkk--ddeesstt and a parallel hierarchy of files).
+              ----mmooddiiffyy--wwiinnddooww==11 is useful (allowing times to differ by up to 1
+              ----nnoo--DD,  ----nnoo--ppeerrmmss)  or have different defaults in various cir-
+              ----oommiitt--ddiirr--ttiimmeess option will be implied, and (2) if ----ddeelleettee  is
+              ----oouutt--ffoorrmmaatt without ----vveerrbboossee if you like, or you can  override
+              ----ppaarrttiiaall  option  does  not look for this environment value are
+              ----ppaarrttiiaall--ddiirr  unless (1) there is no chance of any of the files
+              ----ppaarrttiiaall--ddiirr),  and (2) when ----ddeellaayy--uuppddaatteess was specified (see
+              ----ppeerrmmss is not enabled.
+              ----pprruunnee--eemmppttyy--ddiirrss option)
+              ----rreeccuurrssiivvee was in effect.  Beginning with 2.6.7, deletions will
+              ----ssiizzee--oonnllyy option, files will not be transferred if  they  have
+              ----ssppaarrssee  option  will  be  auto-disabled  if  a  resend  of the
+              ----wwrriittee--bbaattcchh  option,  but  rsync 2.6.3 is what will be used to
+              --aa ----nnoo--rr.  Note also that the side-effects of the  ----ffiilleess--ffrroomm
+              --aa,  the --rr option would end up being turned on, the opposite of
+              --ee.
+              --vv  will  give you information about what files are being trans-
+              - *
+              - *
+              - *.gz
+              - *.o
+              - *.old
+              --chmod=Dg+s,ug+w,Fo-w,+X
+              --delete-WHEN   options   without   conflict,   as    well    as
+              --filter 'protect emptydir/'
+              --filter=': /.rsync-filter'
+              --max-size=2g+1 is 2147483649 bytes.
+              --rsync-path=/usr/local/bin/rsync).   Note  that  PROGRAM is run
+            --address=ADDRESS       bind address for outgoing socket to daemon
+            --address=ADDRESS       bind to the specified address
+            --append                append data onto shorter files
+            --backup-dir=DIR        make backups into hierarchy based in DIR
+            --blocking-io           use blocking I/O for the remote shell
+            --bwlimit=KBPS          limit I/O bandwidth; KBytes per second
+            --bwlimit=KBPS          limit I/O bandwidth; KBytes per second
+            --cache                 disable fcntl(F_NOCACHE)
+            --checksum-seed=NUM     set block/file checksum seed (advanced)
+            --chmod=CHMOD           affect file and/or directory permissions
+            --compare-dest=DIR      also compare received files relative to DIR
+            --compress-level=NUM    explicitly set compression level
+            --config=FILE           specify alternate rsyncd.conf file
+            --copy-dest=DIR         ... and include copies of unchanged files
+            --copy-unsafe-links     only "unsafe" symlinks are transformed
+            --daemon                run as an rsync daemon
+            --del                   an alias for --delete-during
+            --delay-updates         put all updated files into place at end
+            --delete                delete extraneous files from dest dirs
+            --delete-after          receiver deletes after transfer, not before
+            --delete-before         receiver deletes before transfer (default)
+            --delete-during         receiver deletes during xfer, not before
+            --delete-excluded       also delete excluded files from dest dirs
+            --devices               preserve device files (super-user only)
+            --exclude-from=FILE     read exclude patterns from FILE
+            --exclude=PATTERN       exclude files matching PATTERN
+            --executability         preserve executability
+            --existing              skip creating new files on receiver
+            --files-from=FILE       read list of source-file names from FILE
+            --force                 force deletion of dirs even if not empty
+            --ignore-errors         delete even if there are I/O errors
+            --ignore-existing       skip updating files that exist on receiver
+            --include-from=FILE     read include patterns from FILE
+            --include=PATTERN       don't exclude files matching PATTERN
+            --inplace               update destination files in-place
+            --link-dest=DIR         hardlink to files in DIR when unchanged
+            --list-only             list the files instead of copying them
+            --log-file-format=FMT   log updates using the specified FMT
+            --log-file-format=FMT   override the "log format" setting
+            --log-file=FILE         log what we're doing to the specified FILE
+            --log-file=FILE         override the "log file" setting
+            --max-delete=NUM        don't delete more than NUM files
+            --max-size=SIZE         don't transfer any file larger than SIZE
+            --min-size=SIZE         don't transfer any file smaller than SIZE
+            --modify-window=NUM     compare mod-times with reduced accuracy
+            --no-OPTION             turn off an implied OPTION (e.g. --no-D)
+            --no-detach             do not detach from the parent
+            --no-implied-dirs       don't send implied dirs with --relative
+            --no-motd               suppress daemon-mode MOTD (see caveat)
+            --numeric-ids           don't map uid/gid values by user/group name
+            --only-write-batch=FILE like --write-batch but w/o updating dest
+            --out-format=FORMAT     output updates using the specified FORMAT
+            --partial               keep partially transferred files
+            --partial-dir=DIR       put a partially transferred file into DIR
+            --password-file=FILE    read password from FILE
+            --port=PORT             listen on alternate port number
+            --port=PORT             specify double-colon alternate port number
+            --progress              show progress during transfer
+            --protocol=NUM          force an older protocol version to be used
+            --read-batch=FILE       read a batched update from FILE
+            --remove-source-files   sender removes synchronized files (non-dir)
+            --rsync-path=PROGRAM    specify the rsync to run on remote machine
+            --safe-links            ignore symlinks that point outside the tree
+            --size-only             skip files that match in size
+            --sockopts=OPTIONS      specify custom TCP options
+            --sockopts=OPTIONS      specify custom TCP options
+            --specials              preserve special files
+            --stats                 give some file-transfer stats
+            --suffix=SUFFIX         backup suffix (default ~ w/o --backup-dir)
+            --super                 receiver attempts super-user activities
+            --timeout=TIME          set I/O timeout in seconds
+            --version               print version number
+            --write-batch=FILE      write a batched update to FILE
+          --delete host:src/dir /dest
+        -0, --from0                 all *from/filter files are delimited by 0s
+        -4, --ipv4                  prefer IPv4
+        -4, --ipv4                  prefer IPv4
+        -6, --ipv6                  prefer IPv6
+        -6, --ipv6                  prefer IPv6
+        -8, --8-bit-output          leave high-bit chars unescaped in output
+        -B, --block-size=SIZE       force a fixed checksum block-size
+        -C, --cvs-exclude           auto-ignore files in the same way CVS does
+        -D                          same as --devices --specials
+        -E, --extended-attributes   copy extended attributes, resource forks
+        -F                          same as --filter='dir-merge /.rsync-filter'
+        -H, --hard-links            preserve hard links
+        -I, --ignore-times          don't skip files that match size and time
+        -K, --keep-dirlinks         treat symlinked dir on receiver as dir
+        -L, --copy-links            transform symlink into referent file/dir
+        -O, --omit-dir-times        omit directories when preserving times
+        -P                          same as --partial --progress
+        -R, --relative              use relative path names
+        -S, --sparse                handle sparse files efficiently
+        -T, --temp-dir=DIR          create temporary files in directory DIR
+        -W, --whole-file            copy files whole (without rsync algorithm)
+        -a, --archive               archive mode; same as -rlptgoD (no -H)
+        -b, --backup                make backups (see --suffix & --backup-dir)
+        -c, --checksum              skip based on checksum, not mod-time & size
+        -d, --dirs                  transfer directories without recursing
+        -e, --rsh=COMMAND           specify the remote shell to use
+        -f, --filter=RULE           add a file-filtering RULE
+        -g, --group                 preserve group
+        -h, --help                  show this help (if used after --daemon)
+        -h, --human-readable        output numbers in a human-readable format
+        -i, --itemize-changes       output a change-summary for all updates
+        -k, --copy-dirlinks         transform symlink to dir into referent dir
+        -l, --links                 copy symlinks as symlinks
+        -m, --prune-empty-dirs      prune empty directory chains from file-list
+        -n, --dry-run               show what would have been transferred
+        -o, --owner                 preserve owner (super-user only)
+        -p, --perms                 preserve permissions
+        -q, --quiet                 suppress non-error messages
+        -r, --recursive             recurse into directories
+        -t, --times                 preserve times
+        -u, --update                skip files that are newer on the receiver
+        -v, --verbose               increase verbosity
+        -v, --verbose               increase verbosity
+        -x, --one-file-system       don't cross filesystem boundaries
+        -y, --fuzzy                 find similar file for basis if no dest file
+        -z, --compress              compress file data during the transfer
+       ----aaddddrreessss
+       ----aaddddrreessss
+       ----aappppeenndd
+       ----bbaacckkuupp--ddiirr==DDIIRR
+       ----bblloocckkiinngg--iioo
+       ----bbwwlliimmiitt==KKBBPPSS
+       ----bbwwlliimmiitt==KKBBPPSS
+       ----ccaacchhee
+       ----cchheecckkssuumm--sseeeedd==NNUUMM
+       ----cchhmmoodd
+       ----ccoommppaarree--ddeesstt==DDIIRR
+       ----ccoommpprreessss--lleevveell==NNUUMM
+       ----ccoonnffiigg==FFIILLEE
+       ----ccooppyy--ddeesstt==DDIIRR
+       ----ccooppyy--lliinnkkss
+       ----ccooppyy--uunnssaaffee--lliinnkkss
+       ----ccooppyy--uunnssaaffee--lliinnkkss
+       ----ccooppyy--uunnssaaffee--lliinnkkss  will cause any links to be copied as the file they
+       ----ddaaeemmoonn
+       ----ddeellaayy--uuppddaatteess
+       ----ddeelleettee
+       ----ddeelleettee is desired.  A normal user can ignore this detail and just use
+       ----ddeelleettee--aafftteerr
+       ----ddeelleettee--aafftteerr,  because  this ensures that the receiving side gets all
+       ----ddeelleettee--bbeeffoorree
+       ----ddeelleettee--dduurriinngg,, ----ddeell
+       ----ddeelleettee--eexxcclluuddeedd
+       ----ddeevviicceess
+       ----eexxcclluuddee--ffrroomm==FFIILLEE
+       ----eexxcclluuddee==PPAATTTTEERRNN
+       ----eexxeeccuuttaabbiilliittyy
+       ----eexxiissttiinngg,, ----iiggnnoorree--nnoonn--eexxiissttiinngg
+       ----ffiilleess--ffrroomm  is  dropped, and the ----ffiilltteerr/----iinncclluuddee/----eexxcclluuddee options
+       ----ffiilleess--ffrroomm==FFIILLEE
+       ----ffiilltteerr option, on the other hand, must always contain either a  short
+       ----ffoorrccee
+       ----hheellpp Print a short help page  describing  the  options  available  in
+       ----iiggnnoorree--eerrrroorrss
+       ----iiggnnoorree--eexxiissttiinngg
+       ----iinncclluuddee--ffrroomm==FFIILLEE
+       ----iinncclluuddee==PPAATTTTEERRNN
+       ----iinnppllaaccee
+       ----lliinnkk--ddeesstt==DDIIRR
+       ----lliinnkkss
+       ----lliinnkkss ----ccooppyy--uunnssaaffee--lliinnkkss
+       ----lliinnkkss ----ssaaffee--lliinnkkss
+       ----lliisstt--oonnllyy
+       ----lloogg--ffiillee--ffoorrmmaatt==FFOORRMMAATT
+       ----lloogg--ffiillee--ffoorrmmaatt==FFOORRMMAATT
+       ----lloogg--ffiillee==FFIILLEE
+       ----lloogg--ffiillee==FFIILLEE
+       ----mmaaxx--ddeelleettee==NNUUMM
+       ----mmaaxx--ssiizzee==SSIIZZEE
+       ----mmiinn--ssiizzee==SSIIZZEE
+       ----mmooddiiffyy--wwiinnddooww
+       ----nnoo--ddeettaacchh
+       ----nnoo--iimmpplliieedd--ddiirrss
+       ----nnoo--mmoottdd
+       ----nnuummeerriicc--iiddss
+       ----oonnllyy--wwrriittee--bbaattcchh==FFIILLEE
+       ----oouutt--ffoorrmmaatt==FFOORRMMAATT
+       ----ppaarrttiiaall
+       ----ppaarrttiiaall--ddiirr==DDIIRR
+       ----ppaasssswwoorrdd--ffiillee
+       ----ppoorrtt==PPOORRTT
+       ----ppoorrtt==PPOORRTT
+       ----pprrooggrreessss
+       ----pprroottooccooll==NNUUMM
+       ----pprruunnee--eemmppttyy--ddiirrss option.  Another solution is to add specific include
+       ----rreeaadd--bbaattcchh==FFIILLEE
+       ----rreemmoovvee--ssoouurrccee--ffiilleess
+       ----rrsshh option:
+       ----rrssyynncc--ppaatthh==PPRROOGGRRAAMM
+       ----ssaaffee--lliinnkkss
+       ----ssiizzee--oonnllyy
+       ----ssoocckkooppttss
+       ----ssoocckkooppttss
+       ----ssppeecciiaallss
+       ----ssttaattss
+       ----ssuuffffiixx==SSUUFFFFIIXX
+       ----ssuuppeerr
+       ----ttiimmeeoouutt==TTIIMMEEOOUUTT
+       ----vveerrssiioonn
+       ----wwrriittee--bbaattcchh==FFIILLEE
+       --00,, ----ffrroomm00
+       --44,, ----iippvv44 or --66,, ----iippvv66
+       --44,, ----iippvv44 or --66,, ----iippvv66
+       --88,, ----88--bbiitt--oouuttppuutt
+       --BB,, ----bblloocckk--ssiizzee==BBLLOOCCKKSSIIZZEE
+       --CC,, ----ccvvss--eexxcclluuddee
+       --DD     The --DD option is equivalent to ----ddeevviicceess ----ssppeecciiaallss.
+       --EE,, ----eexxtteennddeedd--aattttrriibbuutteess
+       --FF     The  --FF  option  is a shorthand for adding two ----ffiilltteerr rules to
+       --HH,, ----hhaarrdd--lliinnkkss
+       --II,, ----iiggnnoorree--ttiimmeess
+       --KK,, ----ccooppyy--ddiirrlliinnkkss
+       --KK,, ----kkeeeepp--ddiirrlliinnkkss
+       --LL,, ----ccooppyy--lliinnkkss
+       --OO,, ----oommiitt--ddiirr--ttiimmeess
+       --PP     The --PP option is equivalent to ----ppaarrttiiaall ----pprrooggrreessss.   Its  pur-
+       --RR,, ----rreellaattiivvee
+       --SS,, ----ssppaarrssee
+       --TT,, ----tteemmpp--ddiirr==DDIIRR
+       --WW,, ----wwhhoollee--ffiillee
+       --aa),  every subcomponent of every path is visited from the top down, so
+       --aa,, ----aarrcchhiivvee
+       --bb,, ----bbaacckkuupp
+       --cc,, ----cchheecckkssuumm
+       --dd,, ----ddiirrss
+       --ee,, ----rrsshh==CCOOMMMMAANNDD
+       --ff,, ----ffiilltteerr==RRUULLEE
+       --gg,, ----ggrroouupp
+       --hh,, ----hheellpp
+       --hh,, ----hhuummaann--rreeaaddaabbllee
+       --ii,, ----iitteemmiizzee--cchhaannggeess
+       --ll,, ----lliinnkkss
+       --mm,, ----pprruunnee--eemmppttyy--ddiirrss
+       --nn,, ----ddrryy--rruunn
+       --oo,, ----oowwnneerr
+       --pp,, ----ppeerrmmss
+       --qq,, ----qquuiieett
+       --rr,, ----rreeccuurrssiivvee
+       --tt,, ----ttiimmeess
+       --uu,, ----uuppddaattee
+       --vv,, ----vveerrbboossee
+       --vv,, ----vveerrbboossee
+       --xx,, ----oonnee--ffiillee--ssyysstteemm
+       --yy,, ----ffuuzzzzyy
+       --zz,, ----ccoommpprreessss
+       --no-OPTION

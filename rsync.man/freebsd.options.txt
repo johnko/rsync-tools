@@ -1,0 +1,155 @@
+       ----aaddddrreessss
+       ----aaddddrreessss
+       ----aappppeenndd
+       ----aappppeenndd--vveerriiffyy
+       ----bbaacckkuupp--ddiirr==DDIIRR
+       ----bblloocckkiinngg--iioo
+       ----bbwwlliimmiitt==RRAATTEE
+       ----bbwwlliimmiitt==RRAATTEE
+       ----cchheecckkssuumm--sseeeedd==NNUUMM
+       ----cchhmmoodd
+       ----cchhoowwnn==UUSSEERR::GGRROOUUPP
+       ----ccoommppaarree--ddeesstt==DDIIRR
+       ----ccoommpprreessss--lleevveell==NNUUMM
+       ----ccoonnffiigg==FFIILLEE
+       ----ccoonnttiimmeeoouutt
+       ----ccooppyy--ddeesstt==DDIIRR
+       ----ccooppyy--lliinnkkss
+       ----ccooppyy--uunnssaaffee--lliinnkkss
+       ----ccooppyy--uunnssaaffee--lliinnkkss
+       ----ddaaeemmoonn
+       ----ddeebbuugg==FFLLAAGGSS
+       ----ddeellaayy--uuppddaatteess
+       ----ddeellaayy--uuppddaatteess (which doesn't affect the sorted	 transfer  order,  but
+       ----ddeelleettee
+       ----ddeelleettee	is desired.  A normal user can ignore this detail and just use
+       ----ddeelleettee--aafftteerr
+       ----ddeelleettee--aafftteerr, because this ensures that the receiving side  gets  all
+       ----ddeelleettee--bbeeffoorree
+       ----ddeelleettee--ddeellaayy
+       ----ddeelleettee--dduurriinngg,,	----ddeell
+       ----ddeelleettee--eexxcclluuddeedd
+       ----ddeelleettee--mmiissssiinngg--aarrggss
+       ----ddeevviicceess
+       ----eexxcclluuddee--ffrroomm==FFIILLEE
+       ----eexxcclluuddee==PPAATTTTEERRNN
+       ----eexxiissttiinngg,, ----iiggnnoorree--nnoonn--eexxiissttiinngg
+       ----ffaakkee--ssuuppeerr
+       ----ffiilleeffllaaggss
+       ----ffiilleess--ffrroomm is dropped,	and the	 ----ffiilltteerr/----iinncclluuddee/----eexxcclluuddee  options
+       ----ffiilleess--ffrroomm==FFIILLEE
+       ----ffiilltteerr	 option, on the	other hand, must always	contain	either a short
+       ----ffoorrccee--cchhaannggee
+       ----ffoorrccee--ddeelleettee
+       ----ffoorrccee--sscchhaannggee
+       ----ffoorrccee--uucchhaannggee
+       ----hheellpp Print a short help page  describing  the	options	 available  in
+       ----iiccoonnvv==CCOONNVVEERRTT__SSPPEECC
+       ----iiggnnoorree--eerrrroorrss
+       ----iiggnnoorree--eexxiissttiinngg
+       ----iiggnnoorree--mmiissssiinngg--aarrggss
+       ----iinncclluuddee--ffrroomm==FFIILLEE
+       ----iinncclluuddee==PPAATTTTEERRNN
+       ----iinnffoo==FFLLAAGGSS
+       ----iinnppllaaccee
+       ----lliinnkk--ddeesstt==DDIIRR
+       ----lliinnkkss
+       ----lliinnkkss ----ccooppyy--uunnssaaffee--lliinnkkss
+       ----lliinnkkss ----ssaaffee--lliinnkkss
+       ----lliisstt--oonnllyy
+       ----lloogg--ffiillee--ffoorrmmaatt==FFOORRMMAATT
+       ----lloogg--ffiillee--ffoorrmmaatt==FFOORRMMAATT
+       ----lloogg--ffiillee==FFIILLEE
+       ----lloogg--ffiillee==FFIILLEE
+       ----mmaaxx--ddeelleettee==NNUUMM
+       ----mmaaxx--ssiizzee==SSIIZZEE
+       ----mmiinn--ssiizzee==SSIIZZEE
+       ----mmooddiiffyy--wwiinnddooww
+       ----mmssggss22ssttddeerrrr
+       ----mmuunnggee--lliinnkkss
+       ----nnoo--ddeettaacchh
+       ----nnoo--iimmpplliieedd--ddiirrss
+       ----nnoo--mmoottdd
+       ----nnuummeerriicc--iiddss
+       ----oonnllyy--wwrriittee--bbaattcchh==FFIILLEE
+       ----oouutt--ffoorrmmaatt==FFOORRMMAATT
+       ----oouuttbbuuff==MMOODDEE
+       ----ppaarrttiiaall
+       ----ppaarrttiiaall--ddiirr==DDIIRR
+       ----ppaasssswwoorrdd--ffiillee==FFIILLEE
+       ----ppoorrtt==PPOORRTT
+       ----ppoorrtt==PPOORRTT
+       ----pprreeaallllooccaattee
+       ----pprrooggrreessss
+       ----pprroottooccooll==NNUUMM
+       ----pprruunnee--eemmppttyy--ddiirrss option.  Another solution is to add specific include
+       ----rreeaadd--bbaattcchh==FFIILLEE
+       ----rreemmoovvee--ssoouurrccee--ffiilleess
+       ----rrsshh option:
+       ----rrssyynncc--ppaatthh==PPRROOGGRRAAMM
+       ----ssaaffee--lliinnkkss
+       ----ssiizzee--oonnllyy
+       ----sskkiipp--ccoommpprreessss==LLIISSTT
+       ----ssoocckkooppttss
+       ----ssoocckkooppttss
+       ----ssppeecciiaallss
+       ----ssttaattss
+       ----ssuuffffiixx==SSUUFFFFIIXX
+       ----ssuuppeerr
+       ----ttiimmeeoouutt==TTIIMMEEOOUUTT
+       ----uusseerrmmaapp==SSTTRRIINNGG,, ----ggrroouuppmmaapp==SSTTRRIINNGG
+       ----vveerrssiioonn
+       ----wwrriittee--bbaattcchh==FFIILLEE
+       --00,, ----ffrroomm00
+       --44,, ----iippvv44 or --66,, ----iippvv66
+       --44,, ----iippvv44 or --66,, ----iippvv66
+       --88,, ----88--bbiitt--oouuttppuutt
+       --AA,, ----aaccllss
+       --BB,, ----bblloocckk--ssiizzee==BBLLOOCCKKSSIIZZEE
+       --CC,, ----ccvvss--eexxcclluuddee
+       --DD     The --DD option is equivalent to ----ddeevviicceess ----ssppeecciiaallss.
+       --EE,, ----eexxeeccuuttaabbiilliittyy
+       --FF     The  --FF  option  is a shorthand for adding two ----ffiilltteerr rules to
+       --HH,, ----hhaarrdd--lliinnkkss
+       --II,, ----iiggnnoorree--ttiimmeess
+       --JJ,, ----oommiitt--lliinnkk--ttiimmeess
+       --KK,, ----kkeeeepp--ddiirrlliinnkkss
+       --LL,, ----ccooppyy--lliinnkkss
+       --MM,, ----ddppaarraamm==OOVVEERRRRIIDDEE
+       --MM,, ----rreemmoottee--ooppttiioonn==OOPPTTIIOONN
+       --OO,, ----oommiitt--ddiirr--ttiimmeess
+       --PP     The --PP option is equivalent to ----ppaarrttiiaall ----pprrooggrreessss.   Its  pur-
+       --RR,, ----rreellaattiivvee
+       --SS,, ----ssppaarrssee
+       --TT,, ----tteemmpp--ddiirr==DDIIRR
+       --WW,, ----wwhhoollee--ffiillee
+       --XX,, ----xxaattttrrss
+       --aa), every subcomponent of every	path is	visited	from the top down,  so
+       --aa,, ----aarrcchhiivvee
+       --bb,, ----bbaacckkuupp
+       --cc,, ----cchheecckkssuumm
+       --dd,, ----ddiirrss
+       --ee,, ----rrsshh==CCOOMMMMAANNDD
+       --ff,, ----ffiilltteerr==RRUULLEE
+       --gg,, ----ggrroouupp
+       --hh,, ----hheellpp
+       --hh,, ----hhuummaann--rreeaaddaabbllee
+       --ii,, ----iitteemmiizzee--cchhaannggeess
+       --kk,, ----ccooppyy--ddiirrlliinnkkss
+       --ll,, ----lliinnkkss
+       --mm,, ----pprruunnee--eemmppttyy--ddiirrss
+       --nn,, ----ddrryy--rruunn
+       --oo,, ----oowwnneerr
+       --pp,, ----ppeerrmmss
+       --qq,, ----qquuiieett
+       --rr,, ----rreeccuurrssiivvee
+       --ss,, ----pprrootteecctt--aarrggss
+       --tt,, ----ttiimmeess
+       --uu,, ----uuppddaattee
+       --vv,, ----vveerrbboossee
+       --vv,, ----vveerrbboossee
+       --xx,, ----oonnee--ffiillee--ssyysstteemm
+       --yy,, ----ffuuzzzzyy
+       --zz,, ----ccoommpprreessss
+       --no-OPTION
+       --option=param or replace the '=' with whitespace.  The	parameter  may
