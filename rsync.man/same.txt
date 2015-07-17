@@ -1,247 +1,102 @@
-
-
-       (-h) --help		    show this help (see	below for -h comment)
-       (-h) --help                  show this help (see below for -h comment)
-	    --address=ADDRESS	    bind address for outgoing socket to	daemon
-            --address=ADDRESS       bind address for outgoing socket to daemon
-	    --append		    append data	onto shorter files
-            --append                append data onto shorter files
-	    --append-verify	    --append w/old data	in file	checksum
-	    --backup-dir=DIR	    make backups into hierarchy	based in DIR
-            --backup-dir=DIR        make backups into hierarchy based in DIR
-	    --blocking-io	    use	blocking I/O for the remote shell
-            --blocking-io           use blocking I/O for the remote shell
-            --bwlimit=KBPS          limit I/O bandwidth; KBytes per second
-	    --bwlimit=RATE	    limit socket I/O bandwidth
-            --cache                 disable fcntl(F_NOCACHE)
-	    --checksum-seed=NUM	    set	block/file checksum seed (advanced)
-            --checksum-seed=NUM     set block/file checksum seed (advanced)
-	    --chmod=CHMOD	    affect file	and/or directory permissions
-            --chmod=CHMOD           affect file and/or directory permissions
-	    --chown=USER:GROUP	    simple username/groupname mapping
-	    --compare-dest=DIR	    also compare received files	relative to DIR
-            --compare-dest=DIR      also compare received files relative to DIR
-	    --compress-level=NUM    explicitly set compression level
-            --compress-level=NUM    explicitly set compression level
-	    --contimeout=SECONDS    set	daemon connection timeout in seconds
-	    --copy-dest=DIR	    ...	and include copies of unchanged	files
-            --copy-dest=DIR         ... and include copies of unchanged files
-	    --copy-unsafe-links	    only "unsafe" symlinks are transformed
-            --copy-unsafe-links     only "unsafe" symlinks are transformed
-	    --debug=FLAGS	    fine-grained debug verbosity
-	    --del		    an alias for --delete-during
-            --del                   an alias for --delete-during
-	    --delay-updates	    put	all updated files into place at	end
-            --delay-updates         put all updated files into place at end
-	    --delete		    delete extraneous files from dest dirs
-            --delete                delete extraneous files from dest dirs
-	    --delete-after	    receiver deletes after transfer, not during
-            --delete-after          receiver deletes after transfer, not before
-	    --delete-before	    receiver deletes before xfer, not during
-            --delete-before         receiver deletes before transfer (default)
-	    --delete-delay	    find deletions during, delete after
-	    --delete-during	    receiver deletes during the	transfer
-            --delete-during         receiver deletes during xfer, not before
-	    --delete-excluded	    also delete	excluded files from dest dirs
-            --delete-excluded       also delete excluded files from dest dirs
-	    --delete-missing-args   delete missing source args from destination
-	    --devices		    preserve device files (super-user only)
-            --devices               preserve device files (super-user only)
-	    --exclude-from=FILE	    read exclude patterns from FILE
-            --exclude-from=FILE     read exclude patterns from FILE
-	    --exclude=PATTERN	    exclude files matching PATTERN
-            --exclude=PATTERN       exclude files matching PATTERN
-            --executability         preserve executability
-	    --existing		    skip creating new files on receiver
-            --existing              skip creating new files on receiver
-	    --fake-super	    store/recover privileged attrs using xattrs
-	    --fileflags		    preserve file-flags	(aka chflags)
-	    --files-from=FILE	    read list of source-file names from	FILE
-            --files-from=FILE       read list of source-file names from FILE
-            --force                 force deletion of dirs even if not empty
-	    --force-change	    affect user/system immutable files/dirs
-	    --force-delete	    force deletion of dirs even	if not empty
-	    --force-schange	    affect system-immutable files/dirs
-	    --force-uchange	    affect user-immutable files/dirs
-	    --groupmap=STRING	    custom groupname mapping
-	    --iconv=CONVERT_SPEC    request charset conversion of filenames
-	    --ignore-errors	    delete even	if there are I/O errors
-            --ignore-errors         delete even if there are I/O errors
-	    --ignore-existing	    skip updating files	that exist on receiver
-            --ignore-existing       skip updating files that exist on receiver
-	    --ignore-missing-args   ignore missing source args without error
-	    --include-from=FILE	    read include patterns from FILE
-            --include-from=FILE     read include patterns from FILE
-	    --include=PATTERN	    don't exclude files	matching PATTERN
-            --include=PATTERN       don't exclude files matching PATTERN
-	    --info=FLAGS	    fine-grained informational verbosity
-	    --inplace		    update destination files in-place
-            --inplace               update destination files in-place
-	    --link-dest=DIR	    hardlink to	files in DIR when unchanged
-            --link-dest=DIR         hardlink to files in DIR when unchanged
-	    --list-only		    list the files instead of copying them
-            --list-only             list the files instead of copying them
-	    --log-file-format=FMT   log	updates	using the specified FMT
-            --log-file-format=FMT   log updates using the specified FMT
-	    --log-file=FILE	    log	what we're doing to the	specified FILE
-            --log-file=FILE         log what we're doing to the specified FILE
-	    --max-delete=NUM	    don't delete more than NUM files
-            --max-delete=NUM        don't delete more than NUM files
-	    --max-size=SIZE	    don't transfer any file larger than	SIZE
-            --max-size=SIZE         don't transfer any file larger than SIZE
-	    --min-size=SIZE	    don't transfer any file smaller than SIZE
-            --min-size=SIZE         don't transfer any file smaller than SIZE
-	    --modify-window=NUM	    compare mod-times with reduced accuracy
-            --modify-window=NUM     compare mod-times with reduced accuracy
-	    --msgs2stderr	    special output handling for	debugging
-	    --munge-links	    munge symlinks to make them	safer
-	    --no-OPTION		    turn off an	implied	OPTION (e.g. --no-D)
-            --no-OPTION             turn off an implied OPTION (e.g. --no-D)
-	    --no-implied-dirs	    don't send implied dirs with --relative
-            --no-implied-dirs       don't send implied dirs with --relative
-	    --no-motd		    suppress daemon-mode MOTD (see caveat)
-            --no-motd               suppress daemon-mode MOTD (see caveat)
-	    --numeric-ids	    don't map uid/gid values by	user/group name
-            --numeric-ids           don't map uid/gid values by user/group name
-	    --only-write-batch=FILE like --write-batch but w/o updating	dest
-            --only-write-batch=FILE like --write-batch but w/o updating dest
-	    --out-format=FORMAT	    output updates using the specified FORMAT
-            --out-format=FORMAT     output updates using the specified FORMAT
-	    --outbuf=N|L|B	    set	out buffering to None, Line, or	Block
-	    --partial		    keep partially transferred files
-            --partial               keep partially transferred files
-	    --partial-dir=DIR	    put	a partially transferred	file into DIR
-            --partial-dir=DIR       put a partially transferred file into DIR
-	    --password-file=FILE    read daemon-access password	from FILE
-            --password-file=FILE    read password from FILE
-	    --port=PORT		    specify double-colon alternate port	number
-            --port=PORT             specify double-colon alternate port number
-	    --preallocate	    allocate dest files	before writing
-	    --progress		    show progress during transfer
-            --progress              show progress during transfer
-	    --protocol=NUM	    force an older protocol version to be used
-            --protocol=NUM          force an older protocol version to be used
-	    --read-batch=FILE	    read a batched update from FILE
-            --read-batch=FILE       read a batched update from FILE
-	    --remove-source-files   sender removes synchronized	files (non-dir)
-            --remove-source-files   sender removes synchronized files (non-dir)
-	    --rsync-path=PROGRAM    specify the	rsync to run on	remote machine
-            --rsync-path=PROGRAM    specify the rsync to run on remote machine
-	    --safe-links	    ignore symlinks that point outside the tree
-            --safe-links            ignore symlinks that point outside the tree
-	    --size-only		    skip files that match in size
-            --size-only             skip files that match in size
-	    --skip-compress=LIST    skip compressing files with	suffix in LIST
-	    --sockopts=OPTIONS	    specify custom TCP options
-            --sockopts=OPTIONS      specify custom TCP options
-	    --specials		    preserve special files
-            --specials              preserve special files
-	    --stats		    give some file-transfer stats
-            --stats                 give some file-transfer stats
-	    --suffix=SUFFIX	    backup suffix (default ~ w/o --backup-dir)
-            --suffix=SUFFIX         backup suffix (default ~ w/o --backup-dir)
-	    --super		    receiver attempts super-user activities
-            --super                 receiver attempts super-user activities
-	    --timeout=SECONDS	    set	I/O timeout in seconds
-            --timeout=TIME          set I/O timeout in seconds
-	    --usermap=STRING	    custom username mapping
-	    --version		    print version number
-            --version               print version number
-	    --write-batch=FILE	    write a batched update to FILE
-            --write-batch=FILE      write a batched update to FILE
-	-0, --from0		    all	*from/filter files are delimited by 0s
-        -0, --from0                 all *from/filter files are delimited by 0s
-	-4, --ipv4		    prefer IPv4
-        -4, --ipv4                  prefer IPv4
-	-6, --ipv6		    prefer IPv6
-        -6, --ipv6                  prefer IPv6
-	-8, --8-bit-output	    leave high-bit chars unescaped in output
-        -8, --8-bit-output          leave high-bit chars unescaped in output
-	-A, --acls		    preserve ACLs (implies -p)
-	-B, --block-size=SIZE	    force a fixed checksum block-size
-        -B, --block-size=SIZE       force a fixed checksum block-size
-	-C, --cvs-exclude	    auto-ignore	files in the same way CVS does
-        -C, --cvs-exclude           auto-ignore files in the same way CVS does
-	-D			    same as --devices --specials
-        -D                          same as --devices --specials
-	-E, --executability	    preserve executability
-        -E, --extended-attributes   copy extended attributes, resource forks
-	-F			    same as --filter='dir-merge	/.rsync-filter'
-        -F                          same as --filter='dir-merge /.rsync-filter'
-	-H, --hard-links	    preserve hard links
-        -H, --hard-links            preserve hard links
-	-I, --ignore-times	    don't skip files that match	size and time
-        -I, --ignore-times          don't skip files that match size and time
-	-J, --omit-link-times	    omit symlinks from --times
-	-K, --keep-dirlinks	    treat symlinked dir	on receiver as dir
-        -K, --keep-dirlinks         treat symlinked dir on receiver as dir
-	-L, --copy-links	    transform symlink into referent file/dir
-        -L, --copy-links            transform symlink into referent file/dir
-	-M, --remote-option=OPTION  send OPTION	to the remote side only
-	-O, --omit-dir-times	    omit directories from --times
-        -O, --omit-dir-times        omit directories when preserving times
-	-P			    same as --partial --progress
-        -P                          same as --partial --progress
-	-R, --relative		    use	relative path names
-        -R, --relative              use relative path names
-	-S, --sparse		    handle sparse files	efficiently
-        -S, --sparse                handle sparse files efficiently
-	-T, --temp-dir=DIR	    create temporary files in directory	DIR
-        -T, --temp-dir=DIR          create temporary files in directory DIR
-	-W, --whole-file	    copy files whole (w/o delta-xfer algorithm)
-        -W, --whole-file            copy files whole (without rsync algorithm)
-	-X, --xattrs		    preserve extended attributes
-	-a, --archive		    archive mode; equals -rlptgoD (no -H,-A,-X)
-        -a, --archive               archive mode; same as -rlptgoD (no -H)
-	-b, --backup		    make backups (see --suffix & --backup-dir)
-        -b, --backup                make backups (see --suffix & --backup-dir)
-	-c, --checksum		    skip based on checksum, not	mod-time & size
-        -c, --checksum              skip based on checksum, not mod-time & size
-	-d, --dirs		    transfer directories without recursing
-        -d, --dirs                  transfer directories without recursing
-	-e, --rsh=COMMAND	    specify the	remote shell to	use
-        -e, --rsh=COMMAND           specify the remote shell to use
-	-f, --filter=RULE	    add	a file-filtering RULE
-        -f, --filter=RULE           add a file-filtering RULE
-	-g, --group		    preserve group
-        -g, --group                 preserve group
-	-h, --human-readable	    output numbers in a	human-readable format
-        -h, --human-readable        output numbers in a human-readable format
-	-i, --itemize-changes	    output a change-summary for	all updates
-        -i, --itemize-changes       output a change-summary for all updates
-	-k, --copy-dirlinks	    transform symlink to dir into referent dir
-        -k, --copy-dirlinks         transform symlink to dir into referent dir
-	-l, --links		    copy symlinks as symlinks
-        -l, --links                 copy symlinks as symlinks
-	-m, --prune-empty-dirs	    prune empty	directory chains from file-list
-        -m, --prune-empty-dirs      prune empty directory chains from file-list
-	-n, --dry-run		    perform a trial run	with no	changes	made
-        -n, --dry-run               show what would have been transferred
-	-o, --owner		    preserve owner (super-user only)
-        -o, --owner                 preserve owner (super-user only)
-	-p, --perms		    preserve permissions
-        -p, --perms                 preserve permissions
-	-q, --quiet		    suppress non-error messages
-        -q, --quiet                 suppress non-error messages
-	-r, --recursive		    recurse into directories
-        -r, --recursive             recurse into directories
-	-s, --protect-args	    no space-splitting;	wildcard chars only
-	-t, --times		    preserve modification times
-        -t, --times                 preserve times
-	-u, --update		    skip files that are	newer on the receiver
-        -u, --update                skip files that are newer on the receiver
-	-v, --verbose		    increase verbosity
-        -v, --verbose               increase verbosity
-	-x, --one-file-system	    don't cross	filesystem boundaries
-        -x, --one-file-system       don't cross filesystem boundaries
-	-y, --fuzzy		    find similar file for basis	if no dest file
-        -y, --fuzzy                 find similar file for basis if no dest file
-	-z, --compress		    compress file data during the transfer
-        -z, --compress              compress file data during the transfer
-       Here is a short summary of the options available	in rsync. Please refer
-       Here is a short summary of the options available in rsync. Please refer to the detailed description below for a complete description.
-OPTIONS	SUMMARY
-OPTIONS SUMMARY
-				    repeated: --filter='- .rsync-filter'
-                                    repeated: --filter='- .rsync-filter'
-       to the detailed description below for a complete	description.
+# (-h) --help
+# --address=ADDRESS
+# --append
+# --backup-dir=DIR
+# --blocking-io
+--bwlimit=KBPS
+# --checksum-seed=NUM
+# --chmod=CHMOD
+# --compare-dest=DIR
+--compress-level=NUM
+# --copy-dest=DIR
+# --copy-unsafe-links
+# --del
+# --delay-updates
+# --delete
+--delete-after
+# --delete-before
+# --delete-during
+# --delete-excluded
+# --devices
+--exclude-from=FILE
+--exclude=PATTERN
+# --existing
+# --files-from=FILE
+# --ignore-errors
+# --ignore-existing
+# --include-from=FILE
+# --include=PATTERN
+# --inplace
+# --link-dest=DIR
+# --list-only
+# --log-file-format=FMT
+--log-file=FILE
+# --max-delete=NUM
+# --max-size=SIZE
+# --min-size=SIZE
+# --modify-window=NUM
+# --no-implied-dirs
+# --no-motd
+# --numeric-ids
+# --only-write-batch=FILE
+# --out-format=FORMAT
+--partial
+# --partial-dir=DIR
+# --password-file=FILE
+# --port=PORT
+--progress
+# --protocol=NUM
+# --read-batch=FILE
+# --remove-source-files
+# --rsync-path=PROGRAM
+# --safe-links
+# --size-only
+# --sockopts=OPTIONS
+# --specials
+--stats
+# --suffix=SUFFIX
+# --super
+--timeout=SECONDS
+# --version
+# --write-batch=FILE
+# -0, --from0
+# -4, --ipv4
+# -6, --ipv6
+# -8, --8-bit-output
+# -B, --block-size=SIZE
+# -C, --cvs-exclude
+# -D
+# -F
+-H, --hard-links
+# -I, --ignore-times
+# -K, --keep-dirlinks
+# -L, --copy-links
+# -O, --omit-dir-times
+-P
+# -R, --relative
+# -S, --sparse
+# -T, --temp-dir=DIR
+# -W, --whole-file
+# -a, --archive
+# -b, --backup
+-c, --checksum
+# -d, --dirs
+-e, --rsh=COMMAND
+# -f, --filter=RULE
+# -g, --group
+-h, --human-readable
+-i, --itemize-changes
+# -k, --copy-dirlinks
+-l, --links
+-m, --prune-empty-dirs
+-n, --dry-run
+# -o, --owner
+# -p, --perms
+# -q, --quiet
+-r, --recursive
+-t, --times
+# -u, --update
+-v, --verbose
+# -x, --one-file-system
+# -y, --fuzzy
+-z, --compress
