@@ -1,0 +1,68 @@
+#!/bin/sh
+
+if [ "x-n" = "x${1}" ]; then
+    DRYRUN=--dry-run
+    shift
+fi
+
+echo $1
+
+SOURCE=${HOME}/bin/
+TARGET=/tmp/bin/
+
+RSYNC=/usr/bin/rsync
+LOGPATH=/tmp/log/rsync
+SSHPORT=
+
+mkdir -p "${LOGPATH}"
+NOW=`date -u +%y%m%d-%H%M%S`
+if [ "x" == "x${SSHPORT}" ]; then
+    SSHPORT=22
+fi
+cat >/dev/null <<EOF
+
+    --dry-run \
+    --links \
+    --hard-links \
+    #--bwlimit=300 \
+    #--timeout=1800 \
+    #--delete-after \
+    #--exclude-from=FILE \
+    #--exclude=PATTERN \
+    #--link-dest=DIR \
+    #--log-file="${LOGPATH}/${NOW}.log" \
+    #--compress-level=9 \
+    --compress \
+    --stats \
+    --partial \
+    --progress \
+    --checksum \
+    --rsh="ssh -p${SSHPORT}" \
+    --human-readable \
+    --itemize-changes \
+    --prune-empty-dirs \
+    --recursive \
+    --times \
+    --verbose \
+
+EOF
+
+${RSYNC} \
+    ${DRYRUN} \
+    --links \
+    --hard-links \
+    --compress \
+    --stats \
+    --partial \
+    --progress \
+    --checksum \
+    --rsh="ssh -p${SSHPORT}" \
+    --human-readable \
+    --itemize-changes \
+    --prune-empty-dirs \
+    --recursive \
+    --times \
+    --verbose \
+    ${SOURCE} \
+    ${TARGET} \
+| tee "${LOGPATH}/${NOW}.log"
