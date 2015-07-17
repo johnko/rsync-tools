@@ -27,7 +27,7 @@
 # --include-from=FILE
 # --include=PATTERN
 # --inplace
-# --link-dest=DIR
+--link-dest=DIR
 # --list-only
 # --log-file-format=FMT
 --log-file=FILE
