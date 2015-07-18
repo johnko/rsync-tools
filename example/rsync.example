@@ -1,16 +1,30 @@
 #!/bin/sh
 
+SCRIPTVERSION=150718-021211
+
 if [ "x-n" = "x${1}" ]; then
     DRYRUN=--dry-run
     shift
 fi
 
-echo $1
+# echo $1
 
-SOURCE=${HOME}/bin/
-TARGET=/tmp/bin/
-
-RSYNC=/usr/bin/rsync
+SOURCE="${1}"
+TARGET="${2}"
+if [ "x" == "x${SOURCE}" ]; then
+    echo "ERROR: SOURCE undefined."
+    exit 1
+fi
+if [ "x" == "x${TARGET}" ]; then
+    echo "ERROR: TARGET undefined."
+    exit 1
+fi
+if which rsync > /dev/null ; then
+    RSYNC=`which rsync`
+else
+    echo "ERROR: rsync not found in PATH."
+    exit 1
+fi
 LOGPATH=/tmp/log/rsync
 SSHPORT=
 
@@ -63,6 +77,6 @@ ${RSYNC} \
     --recursive \
     --times \
     --verbose \
-    ${SOURCE} \
-    ${TARGET} \
+    "${SOURCE}" \
+    "${TARGET}" \
 | tee "${LOGPATH}/${NOW}.log"
