@@ -1,9 +1,10 @@
 #!/bin/sh
 
-SCRIPTVERSION=150718-024103
+SCRIPTVERSION=150718-024707
 
 NOW=`date -u +%y%m%d-%H%M%S`
 LOGPATH=/tmp/log/rsync
+LOGFILE="${LOGPATH}/${NOW}.log"
 EXCLUDEFILE="${HOME}/local/rsync_exclude_file.txt"
 SSHPORT=
 
@@ -52,6 +53,9 @@ fi
 if [ -e "${EXCLUDEFILE}" ]; then
     EXCLUDEOPTION="--exclude-from=${EXCLUDEFILE}"
 fi
+if [ "x" != "x${LINKDEST}" ]; then
+    LDOPTION="--link-dest=\"${LINKDEST}\""
+fi
 
 cat >/dev/null <<EOF
 
@@ -64,7 +68,7 @@ cat >/dev/null <<EOF
     #--exclude-from=FILE \
     #--exclude=PATTERN \
     #--link-dest=DIR \
-    #--log-file="${LOGPATH}/${NOW}.log" \
+    #--log-file="${LOGFILE}" \
     #--compress-level=9 \
     --compress \
     --stats \
@@ -100,4 +104,4 @@ ${RSYNC} \
     --verbose \
     "${SOURCE}" \
     "${TARGET}" \
-| tee "${LOGPATH}/${NOW}.log"
+| tee -a "${LOGFILE}"
