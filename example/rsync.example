@@ -1,12 +1,13 @@
 #!/bin/sh
 
-SCRIPTVERSION=150718-031415
+SCRIPTVERSION=150718-031559
 
 NOW=`date -u +%y%m%d-%H%M%S`
 LOGPATH=/tmp/log/rsync
 LOGFILE="${LOGPATH}/${NOW}.log"
 EXCLUDEFILE="${HOME}/local/rsync_exclude_file.txt"
 SSHPORT=
+RTYPE="LAN"
 
 usage() {
     echo "Usage: $0 [-n] [-w|-l] -s source -d dest -p link-dest"
