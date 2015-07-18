@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SCRIPTVERSION=150718-024707
+SCRIPTVERSION=150718-024801
 
 NOW=`date -u +%y%m%d-%H%M%S`
 LOGPATH=/tmp/log/rsync
@@ -88,6 +88,7 @@ EOF
 ${RSYNC} \
     ${DRYRUN} \
     ${EXCLUDEOPTION} \
+    ${LDOPTION} \
     --links \
     --hard-links \
     --compress \
