@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SCRIPTVERSION=150718-025620
+SCRIPTVERSION=150718-031415
 
 NOW=`date -u +%y%m%d-%H%M%S`
 LOGPATH=/tmp/log/rsync
@@ -8,19 +8,21 @@ LOGFILE="${LOGPATH}/${NOW}.log"
 EXCLUDEFILE="${HOME}/local/rsync_exclude_file.txt"
 SSHPORT=
 
-while getopts nwl o; do
+usage() {
+    echo "Usage: $0 [-n] [-w|-l] -s source -d dest -p link-dest"
+}
+
+while getopts s:d:p:nwl o; do
     case "$o" in
-        n) DRYRUN="--dry-run"
+        n) DRYRUN="--dry-run" ;;
         w) RTYPE="WAN" ;;
         l) RTYPE="LAN" ;;
+        s) SOURCE="${OPTARG}" ;;
+        d) TARGET="${OPTARG}" ;;
+        p) LINKDEST="${OPTARG}" ;;
+        [?]) usage; exit 1 ;;
     esac
 done
-
-# echo $1
-
-SOURCE="${1}"
-TARGET="${2}"
-LINKDEST="${3}"
 
 if [ "x" == "x${SOURCE}" ]; then
     echo "ERROR: SOURCE undefined."
