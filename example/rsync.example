@@ -1,9 +1,14 @@
 #!/bin/sh
 
-SCRIPTVERSION=150718-021211
+SCRIPTVERSION=150718-023121
+
+NOW=`date -u +%y%m%d-%H%M%S`
+LOGPATH=/tmp/log/rsync
+EXCLUDEFILE="${HOME}/local/rsync_exclude_file.txt"
+SSHPORT=
 
 if [ "x-n" = "x${1}" ]; then
-    DRYRUN=--dry-run
+    DRYRUN="--dry-run"
     shift
 fi
 
@@ -11,6 +16,7 @@ fi
 
 SOURCE="${1}"
 TARGET="${2}"
+
 if [ "x" == "x${SOURCE}" ]; then
     echo "ERROR: SOURCE undefined."
     exit 1
@@ -25,14 +31,27 @@ else
     echo "ERROR: rsync not found in PATH."
     exit 1
 fi
-LOGPATH=/tmp/log/rsync
-SSHPORT=
-
-mkdir -p "${LOGPATH}"
-NOW=`date -u +%y%m%d-%H%M%S`
+if [ ! -d "${LOGPATH}" ]; then
+    mkdir -p "${LOGPATH}"
+    if [ ! -d "${LOGPATH}" ]; then
+        echo "ERROR: ${LOGPATH} is not a folder."
+        exit 1
+    fi
+fi
+if [ ! -d "${EXCLUDEFILE%/*}" ]; then
+    mkdir -p "${EXCLUDEFILE%/*}"
+    if [ ! -d "${EXCLUDEFILE%/*}" ]; then
+        echo "ERROR: ${EXCLUDEFILE%/*} is not a folder."
+        exit 1
+    fi
+fi
 if [ "x" == "x${SSHPORT}" ]; then
     SSHPORT=22
 fi
+if [ -e "${EXCLUDEFILE}" ]; then
+    EXCLUDEOPTION="--exclude-from=${EXCLUDEFILE}"
+fi
+
 cat >/dev/null <<EOF
 
     --dry-run \
@@ -63,6 +82,7 @@ EOF
 
 ${RSYNC} \
     ${DRYRUN} \
+    ${EXCLUDEOPTION} \
     --links \
     --hard-links \
     --compress \
