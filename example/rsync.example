@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SCRIPTVERSION=150718-031559
+SCRIPTVERSION=150718-032040
 
 NOW=`date -u +%y%m%d-%H%M%S`
 LOGPATH=/tmp/log/rsync
@@ -97,7 +97,7 @@ cat >/dev/null <<EOF
 EOF
 
 
-cat >> "${LOGFILE}" <<EOF
+tee -a "${LOGFILE}" <<EOF
 start of log
 `date -u +%y%m%d-%H%M%S`
 LOGFILE=       ${LOGFILE}
@@ -133,7 +133,7 @@ ${RSYNC} \
 | tee -a "${LOGFILE}"
 
 
-cat >> "${LOGFILE}" <<EOF
+tee -a "${LOGFILE}" <<EOF
 `date -u +%y%m%d-%H%M%S`
 end of log
 EOF
