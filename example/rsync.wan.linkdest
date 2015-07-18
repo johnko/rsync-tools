@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SCRIPTVERSION=150718-024801
+SCRIPTVERSION=150718-025620
 
 NOW=`date -u +%y%m%d-%H%M%S`
 LOGPATH=/tmp/log/rsync
@@ -85,6 +85,20 @@ cat >/dev/null <<EOF
 
 EOF
 
+cat >> "${LOGFILE}" <<EOF
+start of log
+`date -u +%y%m%d-%H%M%S`
+LOGFILE=       ${LOGFILE}
+SSHPORT=       ${SSHPORT}
+RSYNC=         ${RSYNC}
+DRYRUN=        ${DRYRUN}
+EXCLUDEOPTION= ${EXCLUDEOPTION}
+LDOPTION=      ${LDOPTION}
+SOURCE=        ${SOURCE}
+TARGET=        ${TARGET}
+EOF
+
+
 ${RSYNC} \
     ${DRYRUN} \
     ${EXCLUDEOPTION} \
@@ -107,3 +121,9 @@ ${RSYNC} \
     "${SOURCE}" \
     "${TARGET}" \
 | tee -a "${LOGFILE}"
+
+
+cat >> "${LOGFILE}" <<EOF
+`date -u +%y%m%d-%H%M%S`
+end of log
+EOF
