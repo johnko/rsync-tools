@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SCRIPTVERSION=150718-023121
+SCRIPTVERSION=150718-024103
 
 NOW=`date -u +%y%m%d-%H%M%S`
 LOGPATH=/tmp/log/rsync
@@ -16,6 +16,7 @@ fi
 
 SOURCE="${1}"
 TARGET="${2}"
+LINKDEST="${3}"
 
 if [ "x" == "x${SOURCE}" ]; then
     echo "ERROR: SOURCE undefined."

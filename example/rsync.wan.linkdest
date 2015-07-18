@@ -1,10 +1,10 @@
 #!/bin/sh
 
-SCRIPTVERSION=150718-023121
+SCRIPTVERSION=150718-024103
 
 NOW=`date -u +%y%m%d-%H%M%S`
 LOGPATH=/tmp/log/rsync
-EXCLUDEFILE="${HOME}/local/rsync_exclude_file.txt"
+EXCLUDEFILE="${HOME}/local/rsync_wan_exclude_file.txt"
 SSHPORT=
 
 if [ "x-n" = "x${1}" ]; then
@@ -16,6 +16,7 @@ fi
 
 SOURCE="${1}"
 TARGET="${2}"
+LINKDEST="${3}"
 
 if [ "x" == "x${SOURCE}" ]; then
     echo "ERROR: SOURCE undefined."
@@ -83,13 +84,14 @@ EOF
 ${RSYNC} \
     ${DRYRUN} \
     ${EXCLUDEOPTION} \
+    --bwlimit=300 \
+    --timeout=1800 \
+    --compress-level=9 \
     --links \
-    --hard-links \
     --compress \
     --stats \
     --partial \
     --progress \
-    --checksum \
     --rsh="ssh -p${SSHPORT}" \
     --human-readable \
     --itemize-changes \
