@@ -8,10 +8,13 @@ LOGFILE="${LOGPATH}/${NOW}.log"
 EXCLUDEFILE="${HOME}/local/rsync_exclude_file.txt"
 SSHPORT=
 
-if [ "x-n" = "x${1}" ]; then
-    DRYRUN="--dry-run"
-    shift
-fi
+while getopts nwl o; do
+    case "$o" in
+        n) DRYRUN="--dry-run"
+        w) RTYPE="WAN" ;;
+        l) RTYPE="LAN" ;;
+    esac
+done
 
 # echo $1
 
@@ -56,12 +59,17 @@ fi
 if [ "x" != "x${LINKDEST}" ]; then
     LDOPTION="--link-dest=\"${LINKDEST}\""
 fi
+if [ "xWAN" == "x${RTYPE}" ]; then
+    WANOPTIONS="--bwlimit=300 --timeout=1800 --compress-level=9 --compress"
+elif [ "xLAN" == "x${RTYPE}" ]; then
+    LANOPTIONS=""
+fi
 
 cat >/dev/null <<EOF
 
     --dry-run \
     --links \
-    --hard-links \
+    #--hard-links \
     #--bwlimit=300 \
     #--timeout=1800 \
     #--delete-after \
@@ -70,11 +78,11 @@ cat >/dev/null <<EOF
     #--link-dest=DIR \
     #--log-file="${LOGFILE}" \
     #--compress-level=9 \
-    --compress \
+    #--compress \
     --stats \
     --partial \
     --progress \
-    --checksum \
+    #--checksum \
     --rsh="ssh -p${SSHPORT}" \
     --human-readable \
     --itemize-changes \
@@ -84,6 +92,7 @@ cat >/dev/null <<EOF
     --verbose \
 
 EOF
+
 
 cat >> "${LOGFILE}" <<EOF
 start of log
@@ -103,13 +112,12 @@ ${RSYNC} \
     ${DRYRUN} \
     ${EXCLUDEOPTION} \
     ${LDOPTION} \
+    ${WANOPTIONS} \
+    ${LANOPTIONS} \
     --links \
-    --hard-links \
-    --compress \
     --stats \
     --partial \
     --progress \
-    --checksum \
     --rsh="ssh -p${SSHPORT}" \
     --human-readable \
     --itemize-changes \
