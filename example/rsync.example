@@ -1,26 +1,27 @@
 #!/bin/sh
 
-SCRIPTVERSION=150718-032040
+SCRIPTVERSION=150718-033337
 
 NOW=`date -u +%y%m%d-%H%M%S`
-LOGPATH=/tmp/log/rsync
+LOGPATH=/tmp/rsynclog
 LOGFILE="${LOGPATH}/${NOW}.log"
 EXCLUDEFILE="${HOME}/local/rsync_exclude_file.txt"
 SSHPORT=
 RTYPE="LAN"
 
 usage() {
-    echo "Usage: $0 [-n] [-w|-l] -s source -d dest -p link-dest"
+    echo "Usage: $0 [-n] [-w|-l] [-p 22] -s source -t target [-d link-dest]"
 }
 
-while getopts s:d:p:nwl o; do
+while getopts s:t:d:p:nwl o; do
     case "$o" in
         n) DRYRUN="--dry-run" ;;
         w) RTYPE="WAN" ;;
         l) RTYPE="LAN" ;;
         s) SOURCE="${OPTARG}" ;;
-        d) TARGET="${OPTARG}" ;;
-        p) LINKDEST="${OPTARG}" ;;
+        t) TARGET="${OPTARG}" ;;
+        d) LINKDEST="${OPTARG}" ;;
+        p) SSHPORT="${OPTARG}" ;;
         [?]) usage; exit 1 ;;
     esac
 done
