@@ -1,9 +1,9 @@
 #!/bin/sh
 
-SCRIPTVERSION=150718-033337
+SCRIPTVERSION=150718-034231
 
 NOW=`date -u +%y%m%d-%H%M%S`
-LOGPATH=/tmp/rsynclog
+LOGPATH=/tmp/`whoami`/rsynclog
 LOGFILE="${LOGPATH}/${NOW}.log"
 EXCLUDEFILE="${HOME}/local/rsync_exclude_file.txt"
 SSHPORT=
