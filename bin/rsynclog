@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SCRIPTVERSION=150718-185930
+SCRIPTVERSION=150721-041904
 NOW=`date -u +%y%m%d-%H%M%S`
 
 
@@ -12,7 +12,7 @@ SSHPORT=
 RTYPE="LAN"
 
 usage() {
-    echo "Usage: $0 [-n] [-w|-l] [-p 22] -s source -t target [-d link-dest]"
+    echo "Usage: $0 [-n] [-w|-l] [-p 22] [-i id_rsa] [-k known_hosts] [-d link-dest] -s source -t target"
 }
 
 while getopts s:t:d:p:nwl o; do
@@ -23,7 +23,9 @@ while getopts s:t:d:p:nwl o; do
         s) SOURCE="${OPTARG}" ;;
         t) TARGET="${OPTARG}" ;;
         d) LINKDEST="${OPTARG}" ;;
-        p) SSHPORT="${OPTARG}" ;;
+        p) SSHPORT="-p ${OPTARG}" ;;
+        i) SSHIDENTITY="-i ${OPTARG}" ;;
+        k) SSHKNOWNHOSTS="-o UserKnownHostsFile=${OPTARG}" ;;
         [?]) usage; exit 1 ;;
     esac
 done
@@ -105,6 +107,8 @@ start of log
 `date -u +%y%m%d-%H%M%S`
 LOGFILE=       ${LOGFILE}
 SSHPORT=       ${SSHPORT}
+SSHIDENTITY=   ${SSHIDENTITY}
+SSHKNOWNHOSTS= ${SSHKNOWNHOSTS}
 RSYNC=         ${RSYNC}
 DRYRUN=        ${DRYRUN}
 EXCLUDEOPTION= ${EXCLUDEOPTION}
@@ -124,7 +128,7 @@ ${RSYNC} \
     --stats \
     --partial \
     --progress \
-    --rsh="ssh -p${SSHPORT}" \
+    --rsh="ssh ${SSHPORT} ${SSHIDENTITY} ${SSHKNOWNHOSTS}" \
     --human-readable \
     --itemize-changes \
     --prune-empty-dirs \
