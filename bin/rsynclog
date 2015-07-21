@@ -1,25 +1,24 @@
 #!/bin/sh
 
-SCRIPTVERSION=150721-041904
+SCRIPTVERSION=150721-042557
 NOW=`date -u +%y%m%d-%H%M%S`
 
 
-THISNAME="rsynclog"
+THISNAME="${0##*/}"
 LOGPATH=/tmp/`whoami`/${THISNAME}
-LOGFILE="${LOGPATH}/${NOW}.log"
 EXCLUDEFILE="${HOME}/local/${THISNAME}_exclude.txt"
-SSHPORT=
 RTYPE="LAN"
 
 usage() {
-    echo "Usage: $0 [-n] [-w|-l] [-p 22] [-i id_rsa] [-k known_hosts] [-d link-dest] -s source -t target"
+    echo "Usage: $0 [-n] [-w] [-l log_path] [-x exclude_list] [-p 22] [-i id_rsa] [-k known_hosts] [-d link-dest] -s source -t target"
 }
 
-while getopts s:t:d:p:nwl o; do
+while getopts l:x:s:t:d:p:i:k:nw o; do
     case "$o" in
         n) DRYRUN="--dry-run" ;;
         w) RTYPE="WAN" ;;
-        l) RTYPE="LAN" ;;
+        l) LOGPATH="${OPTARG}" ;;
+        x) EXCLUDEFILE="${OPTARG}" ;;
         s) SOURCE="${OPTARG}" ;;
         t) TARGET="${OPTARG}" ;;
         d) LINKDEST="${OPTARG}" ;;
@@ -29,6 +28,9 @@ while getopts s:t:d:p:nwl o; do
         [?]) usage; exit 1 ;;
     esac
 done
+
+
+LOGFILE="${LOGPATH}/${NOW}.log"
 
 if [ "x" == "x${SOURCE}" ]; then
     echo "ERROR: SOURCE undefined."
