@@ -1,17 +1,20 @@
 #!/bin/sh
 
-SCRIPTVERSION=150721-042557
+SCRIPTVERSION=150721-042907
 NOW=`date -u +%y%m%d-%H%M%S`
 
-
+# defaults
 THISNAME="${0##*/}"
 LOGPATH=/tmp/`whoami`/${THISNAME}
 EXCLUDEFILE="${HOME}/local/${THISNAME}_exclude.txt"
 RTYPE="LAN"
 
 usage() {
-    echo "Usage: $0 [-n] [-w] [-l log_path] [-x exclude_list] [-p 22] [-i id_rsa] [-k known_hosts] [-d link-dest] -s source -t target"
+    echo "Usage: $0 [-n] [-w] [-l log_path] [-x exclude_list]"
+    echo "       [-p 22] [-i id_rsa] [-k known_hosts]"
+    echo "       [-d link-dest] -s source -t target"
 }
+
 
 while getopts l:x:s:t:d:p:i:k:nw o; do
     case "$o" in
@@ -30,8 +33,6 @@ while getopts l:x:s:t:d:p:i:k:nw o; do
 done
 
 
-LOGFILE="${LOGPATH}/${NOW}.log"
-
 if [ "x" == "x${SOURCE}" ]; then
     echo "ERROR: SOURCE undefined."
     exit 1
@@ -46,6 +47,7 @@ else
     echo "ERROR: rsync not found in PATH."
     exit 1
 fi
+LOGFILE="${LOGPATH}/${NOW}.log"
 if [ ! -d "${LOGPATH}" ]; then
     mkdir -p "${LOGPATH}"
     if [ ! -d "${LOGPATH}" ]; then
@@ -59,9 +61,6 @@ if [ ! -d "${EXCLUDEFILE%/*}" ]; then
         echo "ERROR: ${EXCLUDEFILE%/*} is not a folder."
         exit 1
     fi
-fi
-if [ "x" == "x${SSHPORT}" ]; then
-    SSHPORT=22
 fi
 if [ -e "${EXCLUDEFILE}" ]; then
     EXCLUDEOPTION="--exclude-from=${EXCLUDEFILE}"
