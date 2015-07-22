@@ -1,6 +1,35 @@
 #!/bin/sh
-
-SCRIPTVERSION=150721-042907
+######################################################################
+# LICENSE pulled in with, cat LICENSE  | awk '{print "# "$0}'
+######################################################################
+# Copyright (c) 2015, John Ko
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# * Redistributions of source code must retain the above copyright notice, this
+#   list of conditions and the following disclaimer.
+#
+# * Redistributions in binary form must reproduce the above copyright notice,
+#   this list of conditions and the following disclaimer in the documentation
+#   and/or other materials provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+######################################################################
+# Script version is yymmdd-HHMMSS in UTC, date -u +%y%m%d-%H%M%S
+######################################################################
+SCRIPTVERSION=150722-225113
 NOW=`date -u +%y%m%d-%H%M%S`
 
 # defaults
@@ -10,16 +39,14 @@ EXCLUDEFILE="${HOME}/local/${THISNAME}_exclude.txt"
 RTYPE="LAN"
 
 usage() {
-    echo "Usage: $0 [-n] [-w] [-l log_path] [-x exclude_list]"
+    echo "Usage: $0 [-n] [-w] [c-] [-D] [-l log_path] [-x exclude_list]"
     echo "       [-p 22] [-i id_rsa] [-k known_hosts]"
     echo "       [-d link-dest] -s source -t target"
 }
 
 
-while getopts l:x:s:t:d:p:i:k:nw o; do
+while getopts l:x:s:t:d:p:i:k:nwcD o; do
     case "$o" in
-        n) DRYRUN="--dry-run" ;;
-        w) RTYPE="WAN" ;;
         l) LOGPATH="${OPTARG}" ;;
         x) EXCLUDEFILE="${OPTARG}" ;;
         s) SOURCE="${OPTARG}" ;;
@@ -28,6 +55,10 @@ while getopts l:x:s:t:d:p:i:k:nw o; do
         p) SSHPORT="-p ${OPTARG}" ;;
         i) SSHIDENTITY="-i ${OPTARG}" ;;
         k) SSHKNOWNHOSTS="-o UserKnownHostsFile=${OPTARG}" ;;
+        n) DRYRUN="--dry-run" ;;
+        w) RTYPE="WAN" ;;
+        c) CHECKSUM="--checksum" ;;
+        D) DELETEAFTER="--delete-after" ;;
         [?]) usage; exit 1 ;;
     esac
 done
@@ -114,6 +145,10 @@ RSYNC=         ${RSYNC}
 DRYRUN=        ${DRYRUN}
 EXCLUDEOPTION= ${EXCLUDEOPTION}
 LDOPTION=      ${LDOPTION}
+WANOPTIONS=    ${WANOPTIONS}
+LANOPTIONS=    ${LANOPTIONS}
+CHECKSUM=      ${CHECKSUM}
+DELETEAFTER=   ${DELETEAFTER}
 SOURCE=        ${SOURCE}
 TARGET=        ${TARGET}
 EOF
@@ -125,6 +160,8 @@ ${RSYNC} \
     ${LDOPTION} \
     ${WANOPTIONS} \
     ${LANOPTIONS} \
+    ${CHECKSUM} \
+    ${DELETEAFTER} \
     --links \
     --stats \
     --partial \
