@@ -29,7 +29,7 @@
 ######################################################################
 # Script version is yymmdd-HHMMSS in UTC, date -u +%y%m%d-%H%M%S
 ######################################################################
-SCRIPTVERSION=150722-225113
+SCRIPTVERSION=150812-030736
 NOW=`date -u +%y%m%d-%H%M%S`
 
 # defaults
@@ -162,6 +162,7 @@ ${RSYNC} \
     ${LANOPTIONS} \
     ${CHECKSUM} \
     ${DELETEAFTER} \
+    --chmod=u=rwX \
     --links \
     --stats \
     --partial \
