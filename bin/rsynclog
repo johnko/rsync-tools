@@ -29,7 +29,7 @@
 ######################################################################
 # Script version is yymmdd-HHMMSS in UTC, date -u +%y%m%d-%H%M%S
 ######################################################################
-SCRIPTVERSION=150812-030736
+SCRIPTVERSION=150814-203441
 NOW=`date -u +%y%m%d-%H%M%S`
 
 # defaults
@@ -45,10 +45,11 @@ usage() {
 }
 
 
-while getopts l:x:s:t:d:p:i:k:nwcD o; do
+while getopts l:x:I:s:t:d:p:i:k:nwcD o; do
     case "$o" in
         l) LOGPATH="${OPTARG}" ;;
         x) EXCLUDEFILE="${OPTARG}" ;;
+        I) INCLUDEFILE="${OPTARG}" ;;
         s) SOURCE="${OPTARG}" ;;
         t) TARGET="${OPTARG}" ;;
         d) LINKDEST="${OPTARG}" ;;
@@ -95,6 +96,16 @@ if [ ! -d "${EXCLUDEFILE%/*}" ]; then
 fi
 if [ -e "${EXCLUDEFILE}" ]; then
     EXCLUDEOPTION="--exclude-from=${EXCLUDEFILE}"
+fi
+if [ ! -d "${INCLUDEFILE%/*}" ]; then
+    mkdir -p "${INCLUDEFILE%/*}"
+    if [ ! -d "${INCLUDEFILE%/*}" ]; then
+        echo "ERROR: ${INCLUDEFILE%/*} is not a folder."
+        exit 1
+    fi
+fi
+if [ -e "${INCLUDEFILE}" ]; then
+    INCLUDEOPTION="--include-from=${INCLUDEFILE}"
 fi
 if [ "x" != "x${LINKDEST}" ]; then
     LDOPTION="--link-dest=\"${LINKDEST}\""
@@ -143,6 +154,7 @@ SSHIDENTITY=   ${SSHIDENTITY}
 SSHKNOWNHOSTS= ${SSHKNOWNHOSTS}
 RSYNC=         ${RSYNC}
 DRYRUN=        ${DRYRUN}
+INCLUDEOPTION= ${INCLUDEOPTION}
 EXCLUDEOPTION= ${EXCLUDEOPTION}
 LDOPTION=      ${LDOPTION}
 WANOPTIONS=    ${WANOPTIONS}
@@ -156,6 +168,7 @@ EOF
 
 ${RSYNC} \
     ${DRYRUN} \
+    ${INCLUDEOPTION} \
     ${EXCLUDEOPTION} \
     ${LDOPTION} \
     ${WANOPTIONS} \
