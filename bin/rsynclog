@@ -29,12 +29,13 @@
 ######################################################################
 # Script version is yymmdd-HHMMSS in UTC, date -u +%y%m%d-%H%M%S
 ######################################################################
-SCRIPTVERSION=150815-192717
+SCRIPTVERSION=150818-200227
 NOW=`date -u +%y%m%d-%H%M%S`
 
 # defaults
 THISNAME="${0##*/}"
 LOGPATH=/tmp/`whoami`/${THISNAME}
+FILELIST="${HOME}/local/${THISNAME}_filelist.txt"
 EXCLUDEFILE="${HOME}/local/${THISNAME}_exclude.txt"
 INCLUDEFILE="${HOME}/local/${THISNAME}_include.txt"
 RTYPE="LAN"
@@ -49,6 +50,7 @@ usage() {
 while getopts l:x:I:s:t:d:p:i:k:nwcD o; do
     case "$o" in
         l) LOGPATH="${OPTARG}" ;;
+        f) FILELIST="${OPTARG}" ;;
         x) EXCLUDEFILE="${OPTARG}" ;;
         I) INCLUDEFILE="${OPTARG}" ;;
         s) SOURCE="${OPTARG}" ;;
@@ -87,6 +89,16 @@ if [ ! -d "${LOGPATH}" ]; then
         echo "ERROR: ${LOGPATH} is not a folder."
         exit 1
     fi
+fi
+if [ ! -d "${FILELIST%/*}" ]; then
+    mkdir -p "${FILELIST%/*}"
+    if [ ! -d "${FILELIST%/*}" ]; then
+        echo "ERROR: ${FILELIST%/*} is not a folder."
+        exit 1
+    fi
+fi
+if [ -e "${FILELIST}" ]; then
+    FILESOPTION="--files-from=${FILELIST}"
 fi
 if [ ! -d "${EXCLUDEFILE%/*}" ]; then
     mkdir -p "${EXCLUDEFILE%/*}"
@@ -155,8 +167,9 @@ SSHIDENTITY=   ${SSHIDENTITY}
 SSHKNOWNHOSTS= ${SSHKNOWNHOSTS}
 RSYNC=         ${RSYNC}
 DRYRUN=        ${DRYRUN}
-INCLUDEOPTION= ${INCLUDEOPTION}
+FILESOPTION=   ${FILESOPTION}
 EXCLUDEOPTION= ${EXCLUDEOPTION}
+INCLUDEOPTION= ${INCLUDEOPTION}
 LDOPTION=      ${LDOPTION}
 WANOPTIONS=    ${WANOPTIONS}
 LANOPTIONS=    ${LANOPTIONS}
@@ -169,8 +182,9 @@ EOF
 
 ${RSYNC} \
     ${DRYRUN} \
-    ${INCLUDEOPTION} \
+    ${FILESOPTION} \
     ${EXCLUDEOPTION} \
+    ${INCLUDEOPTION} \
     ${LDOPTION} \
     ${WANOPTIONS} \
     ${LANOPTIONS} \
