@@ -1,7 +1,7 @@
 #!/bin/sh
 
 SCRIPT="rsyncmirrorbackup-example"
-LOGFILE="/tank/log/${SCRIPT}.log"
+LOGFILE="/tank/log/${SCRIPT##*-}.log"
 
 if ! pgrep -lf \
     "${SCRIPT}" >/dev/null 2>&1 ; then
