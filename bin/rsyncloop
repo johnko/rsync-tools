@@ -1,0 +1,206 @@
+#!/bin/sh
+######################################################################
+# LICENSE pulled in with, cat LICENSE  | awk '{print "# "$0}'
+######################################################################
+# Copyright (c) 2015, John Ko
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# * Redistributions of source code must retain the above copyright notice, this
+#   list of conditions and the following disclaimer.
+#
+# * Redistributions in binary form must reproduce the above copyright notice,
+#   this list of conditions and the following disclaimer in the documentation
+#   and/or other materials provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+######################################################################
+# Script version is yymmdd-HHMMSS in UTC, date -u +%y%m%d-%H%M%S
+######################################################################
+SCRIPTVERSION=150826-025437
+NOW=`date -u +%y%m%d-%H%M%S`
+
+# defaults
+THISNAME="${0##*/}"
+FILELIST="${HOME}/local/${THISNAME}_filelist.txt"
+EXCLUDEFILE="${HOME}/local/${THISNAME}_exclude.txt"
+INCLUDEFILE="${HOME}/local/${THISNAME}_include.txt"
+RTYPE="LAN"
+
+usage() {
+    echo "Usage: $0 [-n] [-w] [c-] [-D] [-x exclude_list]"
+    echo "       [-p 22] [-i id_rsa] [-k known_hosts]"
+    echo "       [-d link-dest] -s source -t target"
+}
+
+
+while getopts f:x:I:s:t:d:p:i:k:nwcD o; do
+    case "$o" in
+        f) FILELIST="${OPTARG}" ;;
+        x) EXCLUDEFILE="${OPTARG}" ;;
+        I) INCLUDEFILE="${OPTARG}" ;;
+        s) SOURCE="${OPTARG}" ;;
+        t) TARGET="${OPTARG}" ;;
+        d) LINKDEST="${OPTARG}" ;;
+        p) SSHPORT="-p ${OPTARG}" ;;
+        i) SSHIDENTITY="-i ${OPTARG}" ;;
+        k) SSHKNOWNHOSTS="-o UserKnownHostsFile=${OPTARG}" ;;
+        n) DRYRUN="--dry-run" ;;
+        w) RTYPE="WAN" ;;
+        c) CHECKSUM="--checksum" ;;
+        D) DELETEAFTER="--delete-after" ;;
+        [?]) usage; exit 1 ;;
+    esac
+done
+
+
+if [ "x" == "x${SOURCE}" ]; then
+    echo "ERROR: SOURCE undefined."
+    exit 1
+fi
+if [ "x" == "x${TARGET}" ]; then
+    echo "ERROR: TARGET undefined."
+    exit 1
+fi
+if which rsync > /dev/null ; then
+    RSYNC=`which rsync`
+else
+    echo "ERROR: rsync not found in PATH."
+    exit 1
+fi
+if [ ! -d "${FILELIST%/*}" ]; then
+    mkdir -p "${FILELIST%/*}"
+    if [ ! -d "${FILELIST%/*}" ]; then
+        echo "ERROR: ${FILELIST%/*} is not a folder."
+        exit 1
+    fi
+fi
+if [ -e "${FILELIST}" ]; then
+    FILESOPTION="--files-from=${FILELIST}"
+fi
+if [ ! -d "${EXCLUDEFILE%/*}" ]; then
+    mkdir -p "${EXCLUDEFILE%/*}"
+    if [ ! -d "${EXCLUDEFILE%/*}" ]; then
+        echo "ERROR: ${EXCLUDEFILE%/*} is not a folder."
+        exit 1
+    fi
+fi
+if [ -e "${EXCLUDEFILE}" ]; then
+    EXCLUDEOPTION="--exclude-from=${EXCLUDEFILE}"
+fi
+if [ ! -d "${INCLUDEFILE%/*}" ]; then
+    mkdir -p "${INCLUDEFILE%/*}"
+    if [ ! -d "${INCLUDEFILE%/*}" ]; then
+        echo "ERROR: ${INCLUDEFILE%/*} is not a folder."
+        exit 1
+    fi
+fi
+if [ -e "${INCLUDEFILE}" ]; then
+    INCLUDEOPTION="--include-from=${INCLUDEFILE}"
+fi
+if [ "x" != "x${LINKDEST}" ]; then
+    LDOPTION="--link-dest=\"${LINKDEST}\""
+fi
+if [ "xWAN" == "x${RTYPE}" ]; then
+    WANOPTIONS="--bwlimit=300 --timeout=1800 --compress-level=9 --compress"
+elif [ "xLAN" == "x${RTYPE}" ]; then
+    LANOPTIONS=""
+fi
+
+cat >/dev/null <<EOF
+
+    --dry-run \
+    --links \
+    #--hard-links \
+    #--bwlimit=300 \
+    #--timeout=1800 \
+    #--delete-after \
+    #--exclude-from=FILE \
+    #--exclude=PATTERN \
+    #--link-dest=DIR \
+    #--log-file="${LOGFILE}" \
+    #--compress-level=9 \
+    #--compress \
+    --stats \
+    --partial \
+    --progress \
+    #--checksum \
+    --rsh="ssh -p${SSHPORT}" \
+    --human-readable \
+    --itemize-changes \
+    --prune-empty-dirs \
+    --recursive \
+    --times \
+    --verbose \
+
+EOF
+
+
+cat <<EOF
+start of log
+`date -u +%y%m%d-%H%M%S`
+SSHPORT=       ${SSHPORT}
+SSHIDENTITY=   ${SSHIDENTITY}
+SSHKNOWNHOSTS= ${SSHKNOWNHOSTS}
+RSYNC=         ${RSYNC}
+DRYRUN=        ${DRYRUN}
+FILESOPTION=   ${FILESOPTION}
+EXCLUDEOPTION= ${EXCLUDEOPTION}
+INCLUDEOPTION= ${INCLUDEOPTION}
+LDOPTION=      ${LDOPTION}
+WANOPTIONS=    ${WANOPTIONS}
+LANOPTIONS=    ${LANOPTIONS}
+CHECKSUM=      ${CHECKSUM}
+DELETEAFTER=   ${DELETEAFTER}
+SOURCE=        ${SOURCE}
+TARGET=        ${TARGET}
+EOF
+
+
+while ! ${RSYNC} \
+    ${DRYRUN} \
+    ${FILESOPTION} \
+    ${EXCLUDEOPTION} \
+    ${INCLUDEOPTION} \
+    ${LDOPTION} \
+    ${WANOPTIONS} \
+    ${LANOPTIONS} \
+    ${CHECKSUM} \
+    ${DELETEAFTER} \
+    --chmod=u=rwX \
+    --links \
+    --stats \
+    --partial \
+    --progress \
+    --rsh="ssh ${SSHPORT} ${SSHIDENTITY} ${SSHKNOWNHOSTS}" \
+    --human-readable \
+    --itemize-changes \
+    --prune-empty-dirs \
+    --recursive \
+    --times \
+    --verbose \
+    "${SOURCE}" \
+    "${TARGET}" \
+; do
+    date -u +%y%m%d-%H%M%S
+    echo "ERROR during rsync. Trying again in 5 seconds."
+    sleep 5
+done
+
+
+cat <<EOF
+`date -u +%y%m%d-%H%M%S`
+end of log
+EOF

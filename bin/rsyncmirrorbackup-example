@@ -1,0 +1,58 @@
+#!/bin/sh
+
+#DRYRUN="-n"
+#RTYPE="WAN"
+
+SRCPATH="/tank/dataset_name"
+SRCPORT="22"
+USERATREMOTE="urep@remote.short.term.backup.host"
+
+DSTPATH="${SRCPATH}"
+LASTSUCCESSLOG="${DSTPATH}/.lastsuccess.log"
+
+if [ -e ${LASTSUCCESSLOG} ]; then
+    LASTSUCCESS=`tail -1 ${LASTSUCCESSLOG}`
+fi
+
+
+while [ "x" == "x${NEXTITEM}" ]; do
+    # if last success
+    if [ "x" != "x${LASTSUCCESS}" ]; then
+        # set linkdest
+        LINKDEST="-d ${DSTPATH}/${LASTSUCCESS}"
+        # get last item and next item sorted by name (assuming date is alphanumeric sort order)
+        NEXTITEM=`ssh -p ${REMOTEPORT} ${USERATREMOTE} ls -1 ${SRCPATH} \
+            | sort \
+            | grep -A1 "^${LASTSUCCESS}$" \
+            | tail -1`
+    else
+        # get first item sorted by name (assuming date is alphanumeric sort order)
+        NEXTITEM=`ssh -p ${REMOTEPORT} ${USERATREMOTE} ls -1 ${SRCPATH} \
+            | sort \
+            | head -1`
+    fi
+done
+
+
+if [ "${LASTSUCCESS}" = "${NEXTITEM}" ]; then
+    echo "SUCCESS: we are up to date ${LASTSUCCESS} = ${NEXTITEM}" >&2
+    sleep 10
+else
+    # loop until rsync done
+    rsyncloop \
+        ${DRYRUN} \
+        ${RTYPE} \
+        ${LINKDEST} \
+        -p ${SRCPORT} \
+        -i ${HOME}/.ssh/id_ed25519 \
+        -k ${HOME}/.ssh/known_hosts \
+        -s "${USERATREMOTE}:${SRCPATH}/${NEXTITEM}/" \
+        -t "${DSTPATH}/${NEXTITEM}/"
+    # should be stuck in loop until rsync good
+
+    # if not DRYRUN
+    if [ "x" = "x${DRYRUN}" ]; then
+        # append the last item to success
+        echo ${NEXTITEM} >>${LASTSUCCESSLOG}
+    fi
+fi # end of "${LASTSUCCESS}" = "${NEXTITEM}"
