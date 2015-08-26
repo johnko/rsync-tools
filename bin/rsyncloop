@@ -29,7 +29,7 @@
 ######################################################################
 # Script version is yymmdd-HHMMSS in UTC, date -u +%y%m%d-%H%M%S
 ######################################################################
-SCRIPTVERSION=150826-025437
+SCRIPTVERSION=150826-041202
 NOW=`date -u +%y%m%d-%H%M%S`
 
 # defaults
@@ -111,7 +111,7 @@ if [ -e "${INCLUDEFILE}" ]; then
     INCLUDEOPTION="--include-from=${INCLUDEFILE}"
 fi
 if [ "x" != "x${LINKDEST}" ]; then
-    LDOPTION="--link-dest=\"${LINKDEST}\""
+    LDOPTION="--link-dest=${LINKDEST}"
 fi
 if [ "xWAN" == "x${RTYPE}" ]; then
     WANOPTIONS="--bwlimit=300 --timeout=1800 --compress-level=9 --compress"
