@@ -31,6 +31,7 @@ while [ "x" == "x${NEXTITEM}" ]; do
             | sort \
             | head -1`
     fi
+    sleep 1
 done
 
 
