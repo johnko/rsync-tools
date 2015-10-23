@@ -1,7 +1,7 @@
 #!/bin/sh
 
-#DRYRUN="-n"
-#WAN="-w"
+# DRYRUN="-n"
+# WAN="-w"
 
 SRCPATH="/tank/dataset_name"
 SRCPORT="22"
@@ -15,19 +15,19 @@ if [ -e ${LASTSUCCESSLOG} ]; then
 fi
 
 
-while [ "x" == "x${NEXTITEM}" ]; do
+while [ "x" = "x${NEXTITEM}" ]; do
     # if last success
     if [ "x" != "x${LASTSUCCESS}" ]; then
         # set linkdest
         LINKDEST="-d ${DSTPATH}/${LASTSUCCESS}"
         # get last item and next item sorted by name (assuming date is alphanumeric sort order)
-        NEXTITEM=`ssh -p ${SRCPORT} ${USERATREMOTE} ls -1 ${SRCPATH} \
+        NEXTITEM=`ssh -p ${SRCPORT} ${USERATREMOTE} find ${SRCPATH} -mindepth 1 -maxdepth 1 -type d \
             | sort \
-            | grep -A1 "^${LASTSUCCESS}$" \
+            | grep -A1 "${LASTSUCCESS}$" \
             | tail -1`
     else
         # get first item sorted by name (assuming date is alphanumeric sort order)
-        NEXTITEM=`ssh -p ${SRCPORT} ${USERATREMOTE} ls -1 ${SRCPATH} \
+        NEXTITEM=`ssh -p ${SRCPORT} ${USERATREMOTE} find ${SRCPATH} -mindepth 1 -maxdepth 1 -type d \
             | sort \
             | head -1`
     fi
@@ -35,8 +35,8 @@ while [ "x" == "x${NEXTITEM}" ]; do
 done
 
 
-if [ "${LASTSUCCESS}" = "${NEXTITEM}" ]; then
-    echo "SUCCESS: we are up to date ${LASTSUCCESS} = ${NEXTITEM}" >&2
+if [ "${LASTSUCCESS}" = "${NEXTITEM##*/}" ]; then
+    echo "SUCCESS: we are up to date ${LASTSUCCESS} = ${NEXTITEM##*/}" >&2
     sleep 10
 else
     # loop until rsync done
@@ -47,13 +47,13 @@ else
         -p ${SRCPORT} \
         -i ${HOME}/.ssh/id_ed25519 \
         -k ${HOME}/.ssh/known_hosts \
-        -s "${USERATREMOTE}:${SRCPATH}/${NEXTITEM}/" \
-        -t "${DSTPATH}/${NEXTITEM}/"
+        -s "${USERATREMOTE}:${SRCPATH}/${NEXTITEM##*/}/" \
+        -t "${DSTPATH}/${NEXTITEM##*/}/"
     # should be stuck in loop until rsync good
 
     # if not DRYRUN
     if [ "x" = "x${DRYRUN}" ]; then
         # append the last item to success
-        echo ${NEXTITEM} >>${LASTSUCCESSLOG}
+        echo ${NEXTITEM##*/} >>${LASTSUCCESSLOG}
     fi
 fi # end of "${LASTSUCCESS}" = "${NEXTITEM}"
