@@ -120,7 +120,6 @@ cat >/dev/null <<EOF
     --rsh="ssh -p${SSHPORT}" \
     --human-readable \
     --itemize-changes \
-    --prune-empty-dirs \
     --recursive \
     --times \
     --verbose \
@@ -168,7 +167,6 @@ ${RSYNC} \
     --rsh="ssh ${SSHPORT} ${SSHIDENTITY} ${SSHKNOWNHOSTS}" \
     --human-readable \
     --itemize-changes \
-    --prune-empty-dirs \
     --recursive \
     --times \
     --verbose \
