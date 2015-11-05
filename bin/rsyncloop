@@ -30,7 +30,7 @@ while getopts f:x:I:s:t:d:p:i:k:nwcD o; do
         n) DRYRUN="--dry-run" ;;
         w) RTYPE="WAN" ;;
         c) CHECKSUM="--checksum" ;;
-        D) DELETEAFTER="--delete-after" ;;
+        D) DELETEDURING="--delete-during" ;;
         [?]) usage; exit 1 ;;
     esac
 done
@@ -93,10 +93,11 @@ cat >/dev/null <<EOF
 
     --dry-run \
     --links \
+    #--inplace \
     #--hard-links \
     #--bwlimit=300 \
     #--timeout=1800 \
-    #--delete-after \
+    #--delete-during \
     #--exclude-from=FILE \
     #--exclude=PATTERN \
     #--link-dest=DIR \
@@ -132,7 +133,7 @@ LDOPTION=      ${LDOPTION}
 WANOPTIONS=    ${WANOPTIONS}
 LANOPTIONS=    ${LANOPTIONS}
 CHECKSUM=      ${CHECKSUM}
-DELETEAFTER=   ${DELETEAFTER}
+DELETEDURING=  ${DELETEDURING}
 SOURCE=        ${SOURCE}
 TARGET=        ${TARGET}
 EOF
@@ -147,9 +148,10 @@ while ! ${RSYNC} \
     ${WANOPTIONS} \
     ${LANOPTIONS} \
     ${CHECKSUM} \
-    ${DELETEAFTER} \
+    ${DELETEDURING} \
     --chmod=u=rwX \
     --links \
+    --inplace \
     --stats \
     --partial \
     --progress \
